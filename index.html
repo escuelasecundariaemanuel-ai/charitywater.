@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>charity: water — Landing Page</title>
+
+  <style>
+    /*
+      Landing page built from your Canva mockup (beginner-friendly).
+      Image path: images/hero-photo.jpg
+    */
+
+    :root {
+      /* Background gradient pulled from the mockup */
+      --bg-top: #ffdb6d;
+      --bg-mid: #ffe596;
+      --bg-bottom: #fff6dc;
+
+      --ink: #111;
+      --muted: rgba(17, 17, 17, 0.72);
+      --line: rgba(17, 17, 17, 0.10);
+
+      --pill: rgba(255, 255, 255, 0.35);
+      --pill-strong: rgba(255, 255, 255, 0.92);
+
+      --card: rgba(255, 255, 255, 0.65);
+      --card-strong: rgba(255, 255, 255, 0.85);
+
+      --radius-xl: 36px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.12);
+
+      --max: 1100px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 40%, var(--bg-bottom) 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .skip {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      background: #fff;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      z-index: 999;
+    }
+
+    .skip:focus { left: 12px; }
+
+    /* subtle background accents (optional, purely decorative) */
+    .bg-accent {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(700px 360px at 18% 28%, rgba(255,255,255,0.18), transparent 60%),
+        radial-gradient(520px 320px at 82% 18%, rgba(255,255,255,0.14), transparent 65%),
+        radial-gradient(600px 420px at 72% 72%, rgba(255,255,255,0.10), transparent 70%);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding: 28px 0 46px;
+    }
+
+    /* Top centered CTA pill */
+    .cta-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 22px;
+    }
+
+    .cta-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: var(--pill);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      white-space: nowrap;
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
+    }
+
+    .cta-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.14);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .cta-pill:active { transform: translateY(0px); }
+
+    .hero-grid {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-photo {
+      flex: 1.25;
+      margin: 0;
+    }
+
+    .photo-frame {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 6px solid rgba(255, 255, 255, 0.40);
+      outline: 6px solid rgba(255, 255, 255, 0.22);
+      outline-offset: 10px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 3; /* closer to your Canva card feel */
+      object-fit: cover;
+    }
+
+    .hero-copy {
+      flex: 0.95;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: transparent;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.16);
+      overflow: hidden;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+
+.brand-name {
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(26px, 3vw, 34px);
+      letter-spacing: 0.08em;
+    }
+
+    .headline-pill {
+      background: var(--pill-strong);
+      border-radius: var(--radius-pill);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(18px, 2.4vw, 24px);
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+    }
+
+    .subcopy {
+      max-width: 36ch;
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: 15px;
+      line-height: 1.9;
+      letter-spacing: 0.22em;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.90);
+      box-shadow: var(--shadow-soft);
+      font-weight: 650;
+      letter-spacing: 0.06em;
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), background 180ms var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+      background: rgba(255,255,255,0.98);
+    }
+
+    .btn:active { transform: translateY(0px); }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.55);
+    }
+
+    /* ========== STORY / INFO SECTIONS ========== */
+    .section {
+      padding: 38px 0;
+    }
+
+    .section-title {
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: clamp(22px, 2.6vw, 30px);
+      letter-spacing: 0.08em;
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    .section-lede {
+      max-width: 68ch;
+      margin: 0 auto 22px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 180ms var(--ease), box-shadow 180ms var(--ease);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.14);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 0;
+      line-height: 1.75;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .panel {
+      background: var(--card-strong);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* ========== DONATE CTA ========== */
+    .cta-section {
+      padding: 44px 0 56px;
+    }
+
+    .cta-box {
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(0,0,0,0.10);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 8px;
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .cta-box p {
+      margin: 0 auto 18px;
+      text-align: center;
+      max-width: 70ch;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .field {
+      min-width: min(360px, 100%);
+      padding: 12px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.95);
+      outline: none;
+      font-size: 15px;
+    }
+
+    .field:focus {
+      border-color: rgba(0,0,0,0.28);
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
+    }
+
+    .note {
+      margin: 12px 0 0;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(17,17,17,0.62);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 22px 0 30px;
+      color: rgba(17,17,17,0.60);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 980px) {
+      .hero-grid {
+        flex-direction: column;
+        gap: 26px;
+      }
+
+      .subcopy { max-width: 48ch; }
+
+      .cards { grid-template-columns: 1fr; }
+
+      .two-col { grid-template-columns: 1fr; }
+
+      .photo-frame { outline-offset: 8px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .cta-pill, .btn, .card { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-accent" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <main id="main" class="hero">
+    <div class="container">
+      <div class="cta-wrap">
+        <a class="cta-pill" href="#donate" aria-label="Jump to donate section">Take Action — Donate Today</a>
+      </div>
+
+      <section class="hero-grid" aria-label="Hero section">
+        <figure class="hero-photo">
+          <div class="photo-frame">
+            <img
+              src="images/hero-photo.jpg"
+              alt="A group of people sitting together outside a home."
+            />
+          </div>
+        </figure>
+
+        <div class="hero-copy">
+          <div class="brand" aria-label="Brand">
+            <div class="brand-mark">
+              <img class="brand-logo" src="images/cw-logo.png" alt="charity: water logo" />
+            </div>
+            <div class="brand-name">charity: water</div>
+          </div>
+
+          <div class="headline-pill">Transform Your Values Into Action</div>
+
+          <p class="subcopy">
+            Your support brings clean, quality water to real people, creating real, visible impact you can stand behind.
+          </p>
+
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="btn" href="#donate">Donate now</a>
+            <a class="btn secondary" href="#story">Learn the story</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section id="story" class="section" aria-label="Story section">
+    <div class="container">
+      <h2 class="section-title">A simple problem. A real solution.</h2>
+      <p class="section-lede">
+        When people lack reliable access to clean water, it affects health, time, and opportunity. This landing page is built to help college students connect their values to something concrete: funding clean water projects and tracking impact.
+      </p>
+
+      <div class="cards" aria-label="Key ideas">
+        <article class="card">
+          <h3>Make it tangible</h3>
+          <p>
+            Don’t donate into a void. Support a clear outcome: safe water access for real communities.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Make it social</h3>
+          <p>
+            Bring it to your dorm, club, or class. Collective action adds up fast.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Make it repeatable</h3>
+          <p>
+            Small monthly support is easier to sustain than one-time motivation.
+          </p>
+        </article>
+      </div>
+
+      <div class="two-col" aria-label="How it works">
+        <div class="panel">
+          <h3>How your support helps</h3>
+          <ul class="list">
+            <li><strong>Step 1:</strong> You donate (one-time or monthly).</li>
+            <li><strong>Step 2:</strong> Funds go toward clean water projects.</li>
+            <li><strong>Step 3:</strong> You can follow impact and share progress.</li>
+          </ul>
+        </div>
+
+        <aside class="panel">
+          <h3>Student-friendly ideas</h3>
+          <ul class="list">
+            <li>Make a “$5 Friday” challenge with friends.</li>
+            <li>Run a campus club fundraiser (small goal, clear deadline).</li>
+            <li>Share the link + a 1-sentence reason why you care.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="donate" class="cta-section" aria-label="Donate section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to take action?</h2>
+
+        <form class="cta-form" onsubmit="return false;" aria-label="Interest form">
+          <label class="sr-only" for="email">Email</label>
+          <input class="field" id="email" name="email" type="email" placeholder="Drop your email to stay involved" autocomplete="email" />
+          <button class="btn" type="submit">Get updates</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      charity: water
+    </div>
+  </footer>
+
+  <style>
+    /* Visually-hidden utility (for accessible labels) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</body>
+</html>
